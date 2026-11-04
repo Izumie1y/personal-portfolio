@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Portfolio</title>
+
+<style>
+
+/* =================================
+   GLOBAL SETTINGS
+================================= */
+
+:root {
+  --bg:#090b09;
+  --panel:#101410;
+  --panel2:#151b15;
+  --line:#465044;
+  --text:#e1e5dc;
+  --muted:#a0a99b;
+  --green:#a8bd8a;
+  --gold:#e6c66a;
+  --red:#bd786c;
+  --shadow:rgba(0,0,0,.45);
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:72px;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Courier New",monospace;
+  line-height:1.65;
+}
+
+body:before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.11;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:100% 4px;
+  z-index:-1;
+}
+
+
+/* =================================
+   NAVIGATION
+================================= */
+
+nav {
+  position:sticky;
+  top:0;
+  background:rgba(13,17,13,.97);
+  border-bottom:1px solid var(--line);
+  padding:12px 20px;
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  z-index:10;
+  box-shadow:0 5px 18px var(--shadow);
+}
+
+nav a {
+  color:var(--muted);
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+nav a:hover,
+nav a:focus {
+  color:var(--gold);
+}
+
+
+/* =================================
+   PAGE LAYOUT
+================================= */
+
+section {
+  max-width:1120px;
+  margin:auto;
+  padding:48px 22px;
+  scroll-margin-top:58px;
+}
+
+.window {
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,var(--panel),#0b0e0b);
+  box-shadow:0 0 0 1px #080a08 inset,0 10px 28px var(--shadow);
+}
+
+.titlebar {
+  border-bottom:1px solid var(--line);
+  padding:11px 16px;
+  color:var(--green);
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  background:#131913;
+}
+
+.content {
+  padding:clamp(18px,4vw,34px);
+}
+
+
+/* =================================
+   TYPOGRAPHY
+================================= */
+
+h1 {
+  font-size:clamp(32px,5vw,56px);
+  line-height:1.08;
+  margin:4px 0 18px;
+  color:#f0f1e9;
+}
+
+h2 {
+  font-size:clamp(21px,3vw,28px);
+  color:var(--green);
+  margin:0 0 15px;
+}
+
+h3 {
+  font-size:16px;
+  color:var(--gold);
+  margin:0 0 9px;
+}
+
+p {
+  margin:0 0 14px;
+}
+
+.muted {
+  color:var(--muted);
+}
+
+.gold {
+  color:var(--gold);
+}
+
+.green {
+  color:var(--green);
+}
+
+.eyebrow {
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+
+/* HOME HEADING */
+.section-heading {
+   margin-bottom:24px;
+}
+
+.section-heading .eyebrow {
+   font-size:18px;
+   letter-spacing:0;
+   text-transform:none;
+   color:var(--text);
+   margin:0 0 4px;
+}
+
+.section-heading h1 {
+   margin:0;
+   color:var(--green);
+}
+
+/* =================================
+   PROFILE IDENTITY
+================================= */
+
+.profile-identity {
+  display:flex;
+  align-items:center;
+  gap:20px;
+  margin:24px 0 18px;
+}
+
+.profile-image {
+  width:112px;
+  height:112px;
+  flex-shrink:0;
+  object-fit:cover;
+  border:1px solid #53634c;
+  background:#151b15;
+}
+
+.profile-info {
+  min-width:0;
+}
+
+.profile-name {
+  font-size:clamp(22px,3.5vw,32px);
+  line-height:1.2;
+  margin:4px 0 6px;
+  color:#f0f1e9;
+  overflow-wrap:anywhere;
+}
+
+.profile-subtitle {
+  color:var(--green);
+  font-size:13px;
+  margin:0;
+}
+
+.profile-description {
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+
+/* =================================
+   CARDS AND CONTENT
+================================= */
+
+.profile {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:26px 0;
+}
+
+.stat,
+.card {
+  border:1px solid #394337;
+  padding:16px;
+  background:rgba(18,24,18,.8);
+}
+
+.label {
+  color:#899487;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  margin-bottom:6px;
+}
+
+.value {
+  font-size:15px;
+  color:#e3e8dc;
+}
+
+.grid2 {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.grid3 {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.card p:last-child {
+  margin-bottom:0;
+}
+
+.tag {
+  display:inline-block;
+  border:1px solid #53634c;
+  color:var(--green);
+  font-size:10px;
+  padding:3px 7px;
+  margin:3px 4px 3px 0;
+  letter-spacing:.5px;
+}
+
+.rule {
+  height:1px;
+  background:#303a30;
+  margin:24px 0;
+}
+
+.placeholder {
+  border:1px dashed #586052;
+  padding:20px;
+  text-align:center;
+  color:#929b8d;
+  margin-top:18px;
+}
+
+.quote {
+  border-left:3px solid var(--gold);
+  padding:12px 16px;
+  margin:18px 0;
+  background:#121711;
+  color:#d7ddcf;
+}
+
+
+/* =================================
+   IMAGE COMPONENTS
+================================= */
+
+.mapbox {
+  border:1px solid #394337;
+  background:#070907;
+  padding:16px;
+  margin:22px 0;
+  text-align:center;
+}
+
+.strengths-map {
+  display:block;
+  width:80%;
+  max-width:850px;
+  height:auto;
+  margin:0 auto;
+}
+
+.small {
+  font-size:12px;
+  color:var(--muted);
+}
+
+
+/* =================================
+   SKILL PROGRESSION
+================================= */
+
+.skilltree {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  margin-top:22px;
+}
+
+.skill {
+  min-height:170px;
+  border:1px solid #394337;
+  padding:18px;
+  background:rgba(18,24,18,.8);
+}
+
+.skill h3 {
+  font-size:15px;
+}
+
+.skill-progress {
+  margin:15px 0 9px;
+}
+
+.skill-progress-track {
+  display:grid;
+  grid-template-columns:repeat(10,minmax(0,1fr));
+  gap:4px;
+  height:12px;
+}
+
+.skill-progress-track span {
+  display:block;
+  background:#30382e;
+  border:1px solid #3e493a;
+}
+
+.skill-progress-track span.filled {
+  background:linear-gradient(180deg,#b3c88f,#758b5d);
+  border-color:#91a779;
+  box-shadow:0 0 5px rgba(168,189,138,.16);
+}
+
+.skill-meta {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  font-size:10px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.skill-meta strong {
+  font-weight:normal;
+  color:var(--gold);
+  text-align:right;
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+  border-top:1px solid #303a30;
+  padding:24px;
+  text-align:center;
+  color:#7f897c;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+a.inline {
+  color:var(--gold);
+}
+
+section + section {
+  padding-top:24px;
+}
+
+
+/* =================================
+   RESPONSIVE LAYOUT
+================================= */
+
+@media(max-width:800px) {
+  .profile {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid3 {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:560px) {
+  nav {
+    gap:13px;
+    padding:11px 13px;
+  }
+
+  nav a {
+    font-size:10px;
+  }
+
+  .profile-identity {
+    gap:14px;
+  }
+
+  .profile-image {
+    width:88px;
+    height:88px;
+  }
+
+  .profile,
+  .grid2,
+  .grid3,
+  .skilltree {
+    grid-template-columns:1fr;
+  }
+
+  .content {
+    padding:19px;
+  }
+
+  .strengths-map {
+    width:100%;
+  }
+
+  section {
+    padding:30px 14px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =================================
+     MAIN NAVIGATION
+================================= -->
+
+<nav aria-label="Main navigation">
+  <a href="#home">HOME</a>
+  <a href="#build">CHARACTER BUILD</a>
+  <a href="#background">BACKGROUND</a>
+  <a href="#values">VALUES</a>
+  <a href="#skills">SKILL TREE</a>
+</nav>
+
+
+<!-- =================================
+     HOME
+================================= -->
+
+<section id="home">
+  <div class="window">
+    <div class="titlebar">PERSONAL PORTFOLIO / CURRENT PROFILE</div>
+
+    <div class="content">
+
+      <div class="section-heading">
+    <p class="eyebrow">Welcome to my</p>
+    <h1>CHARACTER PROFILE</h1>
+</div>
+
+      <div class="profile-identity">
+        <img
+          src="profile.png"
+          alt="Profile portrait"
+          class="profile-image"
+        >
+
+        <div class="profile-info">
+          <p class="eyebrow">PERSONAL PROFILE / 001</p>
+          <h2 class="profile-name">JAUN DIEZMO</h2>
+          <p class="profile-subtitle">Multimedia Arts Student</p>
+        </div>
+      </div>
+
+      <p class="profile-description">
+        A look at who I am, what I'm learning, and what I'm working toward right now.
+      </p>
+
+      <div class="rule"></div>
+
+      <h2>About Me</h2>
+
+      <p>
+        I'm someone who enjoys exploring different interests, learning new things,
+        and figuring things out along the way. I don't always take myself too
+        seriously, but I do value the work I put into the things that matter to me.
+      </p>
+
+      <p>
+        I'm currently pursuing a Bachelor of Multimedia Arts at CIIT College of Arts
+        and Technology. I'm interested in creative work and technology, and I'm
+        still discovering which areas I want to focus on as I develop my skills.
+      </p>
+
+      <p>
+        This portfolio gives a picture of where I am at this point in my life.
+        It brings together my background, interests, current strengths, areas I
+        want to improve, and the goals I'm working toward. It isn't meant to show
+        a finished version of me, but an honest look at who I am and what matters
+        to me right now.
+      </p>
+
+      <div class="profile">
+        <div class="stat">
+          <div class="label">Current Study</div>
+          <div class="value">Bachelor of Multimedia Arts</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Institution</div>
+          <div class="value">CIIT College of Arts and Technology</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Learning Style</div>
+          <div class="value">Visual / Interest-Driven</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Current Focus</div>
+          <div class="value gold">LEARNING & EXPLORING</div>
+        </div>
+      </div>
+
+      <div class="quote">Still Growing. Always Building.</div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =================================
+     CHARACTER BUILD
+================================= -->
+
+<section id="build">
+  <div class="window">
+    <div class="titlebar">CHARACTER BUILD / STRENGTHS & WEAKNESSES</div>
+
+    <div class="content">
+
+      <p class="muted">
+        This section reflects how I currently understand myself, including my
+        strengths, learning preferences, and the areas I know I still need to work on.
+      </p>
+
+      <div class="mapbox">
+        <img
+          src="Zomboid Style character.png"
+          alt="Personal Strengths Map"
+          class="strengths-map"
+        >
+        <p class="small">Personal Strengths Map</p>
+      </div>
+
+      <div class="grid2">
+
+        <div class="card">
+          <h3>Strengths I Recognize</h3>
+          <ul>
+            <li><strong>Humor:</strong> I often use humor to handle situations and connect with people.</li>
+            <li><strong>Curiosity:</strong> I enjoy gathering information and understanding how things work.</li>
+            <li><strong>Willingness to learn:</strong> I ask questions and seek guidance when I don't understand something.</li>
+            <li><strong>Adaptability:</strong> I can adjust and move forward after disappointment instead of dwelling on it indefinitely.</li>
+            <li><strong>Research and following instructions:</strong> I am comfortable finding information and completing clearly defined tasks.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Areas I Want to Improve</h3>
+          <ul>
+            <li><strong>Discipline and consistency:</strong> I tend to rely on short bursts of work and deadlines.</li>
+            <li><strong>Initiative:</strong> I want to contribute ideas more readily instead of waiting for others to lead.</li>
+            <li><strong>Confidence:</strong> I sometimes hold back when I feel less knowledgeable than the people around me.</li>
+            <li><strong>Focus:</strong> I can become distracted, especially when a task does not interest me.</li>
+            <li><strong>Artistic skills:</strong> I want to develop the technical ability to bring my ideas to life.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="rule"></div>
+
+      <h2>How I Understand Myself</h2>
+
+      <div class="grid3">
+
+        <div class="card">
+          <h3>How I Approach Life</h3>
+          <p>
+            Humor, curiosity, and kindness are qualities I value in myself.
+            I often use humor to handle situations and connect with others.
+            I'm naturally curious and enjoy learning new things, while I'm
+            still figuring out how to practice kindness consistently in
+            everyday life.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>How I Learn</h3>
+          <p>
+            I find it easier to understand new information when I can see it.
+            Diagrams, demonstrations, visual examples, and organized notes
+            help me process ideas. I'm also more motivated when I can connect
+            what I'm learning to something that genuinely interests me.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>What I'm Working On</h3>
+          <p>
+            I've come to recognize that consistency, focus, and confidence
+            are areas I need to improve. I sometimes struggle to stay motivated
+            when a task doesn't interest me, and I can hesitate to share my
+            ideas when I'm unsure of myself. These are things I'm gradually
+            learning to work on.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="rule"></div>
+
+      <h2>Personal Reflections</h2>
+
+      <p>
+        One thing I've realized is that I often focus more on the result than
+        the process. I feel motivated when I'm interested in a task or can see
+        a good outcome, but I sometimes settle for completing the requirements
+        instead of exploring how much I can improve the work.
+      </p>
+
+      <p>
+        I've also learned that developing artistic skills takes patience.
+        Coming from a STEM background, I was used to understanding some topics
+        relatively quickly. Art has shown me that knowing what I want to create
+        is different from having the skills to execute it. I'm learning to accept
+        being a beginner and to treat practice as part of the process.
+      </p>
+
+      <p>
+        During group work, I found that I could contribute by researching and
+        completing assigned tasks, but I sometimes hesitated to share ideas or
+        take initiative. I want to become more confident in expressing my
+        thoughts and more comfortable contributing even when I'm unsure.
+      </p>
+
+      <div class="quote">
+        I don't need to have everything figured out yet. I need to keep learning,
+        practicing, and becoming more willing to try.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =================================
+     BACKGROUND
+================================= -->
+
+<section id="background">
+  <div class="window">
+    <div class="titlebar">BACKGROUND / EDUCATION & EXPERIENCE</div>
+
+    <div class="content">
+
+      <h2>Educational Background</h2>
+
+      <div class="card">
+        <p class="eyebrow">Current</p>
+        <h3>CIIT College of Arts and Technology</h3>
+        <p>Bachelor of Multimedia Arts (BMMA)</p>
+        <p class="muted">
+          Currently developing my foundation in multimedia arts while exploring
+          creative interests and areas of specialization.
+        </p>
+      </div>
+
+      <div class="card" style="margin-top:13px">
+        <p class="eyebrow">Previous Academic Background</p>
+        <h3>Senior High School — STEM</h3>
+        <p class="muted">
+          My STEM background gave me experience with analytical and structured
+          learning. Moving into Multimedia Arts is allowing me to develop a
+          different set of skills and become more comfortable with creative work.
+        </p>
+      </div>
+
+      <div class="rule"></div>
+
+      <h2>Achievements & Projects</h2>
+
+      <p class="muted">
+        Most of my experience so far comes from school, personal interests,
+        and the tasks I've taken on. I don't have a long list of formal awards
+        to show, so this section focuses on the kind of work and experience
+        I'm building at the moment.
+      </p>
+
+      <div class="grid2">
+
+        <div class="card">
+          <h3>Projects</h3>
+          <p>
+            I'm currently building my creative foundation through my Multimedia
+            Arts studies. As I gain more experience, the work I choose to share
+            here will reflect the skills and interests I'm developing.
+          </p>
+          <span class="tag">CURRENT FOCUS</span>
+        </div>
+
+        <div class="card">
+          <h3>Achievements & Recognition</h3>
+          <p>
+            At this point, I'm more focused on learning and improving than
+            collecting awards. I see the skills I develop, the work I complete,
+            and the progress I make as important milestones too.
+          </p>
+          <span class="tag">PERSONAL MILESTONES</span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =================================
+     VALUES
+================================= -->
+
+<section id="values">
+  <div class="window">
+    <div class="titlebar">PERSONAL VALUES / LIFE DIRECTION</div>
+
+    <div class="content">
+
+      <h2>Life Vision</h2>
+
+      <p>
+        To build a successful and fulfilling life through work that I genuinely
+        enjoy and take pride in. I want to create things that reflect my interests
+        and abilities while gaining the financial stability and independence
+        to enjoy the life I build.
+      </p>
+
+      <div class="rule"></div>
+
+      <h2>Life Mission</h2>
+
+      <p>
+        To continuously develop my skills, explore my interests, and take
+        opportunities that allow me to grow. I want to turn my ideas and
+        abilities into meaningful work, remain open to learning, and work
+        toward a future where I can support myself through something I'm
+        proud to create.
+      </p>
+
+      <div class="rule"></div>
+
+      <h2>Personal Values</h2>
+
+      <div class="grid2">
+
+        <div class="card">
+          <h3>Independence</h3>
+          <p>
+            I want to build a comfortable life through my own efforts and
+            eventually be able to support myself and live independently.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Self-Respect</h3>
+          <p>
+            I want to become someone I can genuinely respect, someone who
+            can stand up for themselves and make decisions without constantly
+            seeking approval.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Authenticity</h3>
+          <p>
+            I value being able to express who I am instead of changing myself
+            just to meet other people's expectations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Growth & Dependability</h3>
+          <p>
+            I want to keep improving while becoming someone others can rely
+            on to take responsibility and put genuine effort into their work.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="quote">
+        For me, success isn't only about what I earn or achieve. It's also
+        about having the freedom to live on my own terms and being proud
+        of the person I've become.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =================================
+     SKILL TREE
+================================= -->
+
+<section id="skills">
+  <div class="window">
+    <div class="titlebar">SKILL TREE / DEVELOPMENT GOALS</div>
+
+    <div class="content">
+
+      <p class="muted">
+        A look at the skills and habits I'm currently developing.
+        The progress bars represent my own estimate of where I stand
+        and are meant to reflect my personal growth, not measured scores.
+      </p>
+
+      <div class="skilltree">
+
+        <div class="skill">
+          <h3>Artistic Ability</h3>
+          <p class="muted">
+            Develop my technique and learn to turn ideas into finished work.
+          </p>
+
+          <div class="skill-progress">
+            <div class="skill-progress-track">
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="skill-meta">
+            <span>Current Stage</span>
+            <strong>Building Foundations</strong>
+          </div>
+        </div>
+
+        <div class="skill">
+          <h3>Critical Thinking</h3>
+          <p class="muted">
+            Look beyond the first answer, question assumptions, and make considered decisions.
+          </p>
+
+          <div class="skill-progress">
+            <div class="skill-progress-track">
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="skill-meta">
+            <span>Current Stage</span>
+            <strong>Developing</strong>
+          </div>
+        </div>
+
+        <div class="skill">
+          <h3>Discipline</h3>
+          <p class="muted">
+            Build a steadier routine and follow through without relying only on deadlines.
+          </p>
+
+          <div class="skill-progress">
+            <div class="skill-progress-track">
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span>
+            </div>
+          </div>
+
+          <div class="skill-meta">
+            <span>Current Stage</span>
+            <strong>Starting Out</strong>
+          </div>
+        </div>
+
+        <div class="skill">
+          <h3>Physical Strength</h3>
+          <p class="muted">
+            Become stronger and make physical well-being a more consistent part of my routine.
+          </p>
+
+          <div class="skill-progress">
+            <div class="skill-progress-track">
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span>
+            </div>
+          </div>
+
+          <div class="skill-meta">
+            <span>Current Stage</span>
+            <strong>Starting Out</strong>
+          </div>
+        </div>
+
+        <div class="skill">
+          <h3>Taking Initiative</h3>
+          <p class="muted">
+            Speak up more often, share ideas, and try things even when the outcome is uncertain.
+          </p>
+
+          <div class="skill-progress">
+            <div class="skill-progress-track">
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="skill-meta">
+            <span>Current Stage</span>
+            <strong>Improving</strong>
+          </div>
+        </div>
+
+        <div class="skill">
+          <h3>Self-Confidence</h3>
+          <p class="muted">
+            Trust my judgment, accept being a beginner, and express myself more openly.
+          </p>
+
+          <div class="skill-progress">
+            <div class="skill-progress-track">
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span class="filled"></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="skill-meta">
+            <span>Current Stage</span>
+            <strong>Developing</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="quote">
+        No skill is fixed at its current level. This is where I stand today,
+        and the next step is to keep putting in the work.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =================================
+     FOOTER
+================================= -->
+
+<footer>
+  PERSONAL PORTFOLIO · A SNAPSHOT OF WHO I AM TODAY
+</footer>
+
+</body>
+</html>
