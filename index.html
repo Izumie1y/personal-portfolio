@@ -37,6 +37,7 @@ button{font:inherit}
 .tab[aria-selected="true"]{background:#292c22;border-color:#666b50;color:var(--gold)}
 .tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .panel{display:none;animation:appear .22s ease}
+.panel[hidden]{display:none !important}
 .panel.active{display:block}
 @keyframes appear{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
 .frame{margin-top:18px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(34,37,29,.97),rgba(22,24,19,.98));
@@ -52,7 +53,8 @@ button{font:inherit}
 .home-copy .eyebrow{font-size:11px;color:var(--rust);margin:0 0 16px}
 .home-copy h2{font-size:clamp(38px,7vw,76px);line-height:.98;letter-spacing:-2px;font-weight:normal;margin:0 0 17px}
 .home-copy h2 span{color:var(--olive);display:block}
-.display-name{font:clamp(20px,3vw,28px) "Courier New",monospace;color:var(--cream);letter-spacing:1px;margin:0 0 5px;text-transform:uppercase}\n.role{font:12px "Courier New",monospace;color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:22px}
+.display-name{font:clamp(20px,3vw,28px) "Courier New",monospace;color:var(--cream);letter-spacing:1px;margin:0 0 5px;text-transform:uppercase}
+.role{font:12px "Courier New",monospace;color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:22px}
 .intro{font-size:17px;color:#d0cbbb;max-width:580px;line-height:1.75}
 .identity-details{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .detail-chip{border:1px solid #555a46;padding:7px 10px;color:var(--muted);font:10px "Courier New",monospace;letter-spacing:.8px;text-transform:uppercase}
@@ -129,7 +131,8 @@ footer{display:flex;justify-content:space-between;gap:12px;padding:18px 2px;colo
           <div class="home-copy">
             <p class="eyebrow">Welcome to my</p>
             <h2>CHARACTER <span>PROFILE</span></h2>
-            <p class="display-name">JAUN DIEZMO</p>\n            <div class="role">Multimedia Arts Student</div>
+            <p class="display-name">JAUN DIEZMO</p>
+            <div class="role">Multimedia Arts Student</div>
             <p class="intro">I'm someone who enjoys exploring different interests, learning how things work, and figuring things out along the way. I'm interested in creative work and technology, and I'm still discovering where I want to take those interests.</p>
             <div class="identity-details">
               <span class="detail-chip">BMMA · CIIT</span>
@@ -222,4 +225,77 @@ footer{display:flex;justify-content:space-between;gap:12px;padding:18px 2px;colo
       </div>
     </section>
 
-    <section class="panel" id="skills" role="tabpanel" aria-labelledby="tab-skills"
+    <section class="panel" id="skills" role="tabpanel" aria-labelledby="tab-skills" hidden>
+      <div class="frame">
+        <div class="frame-head"><span>05 / Skill progression</span><span class="right">Development goals</span></div>
+        <div class="content">
+          <div class="section-title"><h2>Skill Tree</h2><p>Current development</p></div>
+          <p class="muted">A look at the skills and habits I'm currently developing. The progress bars represent my own estimate of where I stand and are meant to reflect my personal growth, not measured scores.</p>
+          <div class="skilltree">
+            <div class="skill"><h3>Artistic Ability</h3><p>Develop my technique and learn to turn ideas into finished work.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Building foundations</strong></div></div>
+            <div class="skill"><h3>Critical Thinking</h3><p>Look beyond the first answer, question assumptions, and make considered decisions.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Developing</strong></div></div>
+            <div class="skill"><h3>Discipline</h3><p>Build a steadier routine and follow through without relying only on deadlines.</p><div class="track"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Starting out</strong></div></div>
+            <div class="skill"><h3>Physical Strength</h3><p>Become stronger and make physical well-being a more consistent part of my routine.</p><div class="track"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Starting out</strong></div></div>
+            <div class="skill"><h3>Taking Initiative</h3><p>Speak up more often, share ideas, and try things even when the outcome is uncertain.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Improving</strong></div></div>
+            <div class="skill"><h3>Self-Confidence</h3><p>Trust my judgment, accept being a beginner, and express myself more openly.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Developing</strong></div></div>
+          </div>
+          <div class="quote">No skill is fixed at its current level. This is where I stand today, and the next step is to keep putting in the work.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="works" role="tabpanel" aria-labelledby="tab-works" hidden>
+      <div class="frame">
+        <div class="frame-head"><span>06 / Works archive</span><span class="right">No entries yet</span></div>
+        <div class="content">
+          <div class="works-box"><span>Works in progress</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>Personal portfolio · Current file</span><span>End of record / 001</span></footer>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = [...document.querySelectorAll('.tab[data-tab]')];
+  const panels = [...document.querySelectorAll('.panel[role="tabpanel"]')];
+
+  function showTab(tab) {
+    const targetId = tab.dataset.tab;
+
+    tabs.forEach(button => {
+      const selected = button === tab;
+      button.setAttribute('aria-selected', selected ? 'true' : 'false');
+      button.tabIndex = selected ? 0 : -1;
+    });
+
+    panels.forEach(panel => {
+      const selected = panel.id === targetId;
+      panel.hidden = !selected;
+      panel.classList.toggle('active', selected);
+    });
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => showTab(tab));
+    tab.addEventListener('keydown', event => {
+      let nextIndex = index;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') nextIndex = 0;
+      else if (event.key === 'End') nextIndex = tabs.length - 1;
+      else return;
+
+      event.preventDefault();
+      showTab(tabs[nextIndex]);
+      tabs[nextIndex].focus();
+    });
+  });
+
+  const initialTab = tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0];
+  if (initialTab) showTab(initialTab);
+});
+</script>
+</body>
+</html>
