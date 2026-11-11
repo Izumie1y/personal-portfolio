@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Dossier</title>
+<style>
+:root{
+  --bg:#11120f;--panel:#1a1c17;--panel2:#22251e;--line:#4b5140;
+  --cream:#e7e1cf;--muted:#a5a18f;--olive:#a8ad7b;--rust:#bd7658;
+  --gold:#d8bd7b;--shadow:rgba(0,0,0,.4)
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:
+  radial-gradient(ellipse at 15% 10%,rgba(129,116,76,.12),transparent 36%),
+  linear-gradient(135deg,#11120f,#171914 55%,#10110e);
+  color:var(--cream);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.035) 4px)}
+button{font:inherit}
+.shell{width:min(1120px,calc(100% - 36px));margin:32px auto 60px;position:relative}
+.topline{display:flex;justify-content:space-between;gap:16px;align-items:center;
+  padding:0 2px 13px;border-bottom:1px solid var(--line);font:11px/1.4 "Courier New",monospace;
+  color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+.topline span:last-child{color:var(--rust)}
+.masthead{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:24px 2px 22px}
+.brand-kicker,.eyebrow,.micro,.tab,.label,.stamp,.meta{font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:1.5px}
+.brand-kicker{font-size:11px;color:var(--rust);margin:0 0 7px}
+.masthead h1{font-size:clamp(27px,5vw,48px);line-height:1;margin:0;font-weight:normal;letter-spacing:-1.5px}
+.masthead-note{max-width:240px;text-align:right;color:var(--muted);font:11px/1.6 "Courier New",monospace}
+.tabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;padding:8px;
+  background:#171913;border:1px solid var(--line);border-bottom:2px solid #737451}
+.tab{flex:0 0 auto;border:1px solid transparent;background:transparent;color:var(--muted);
+  padding:12px 15px;font-size:11px;cursor:pointer;transition:.18s}
+.tab:hover{color:var(--cream);border-color:#565b46}
+.tab[aria-selected="true"]{background:#292c22;border-color:#666b50;color:var(--gold)}
+.tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.panel{display:none;animation:appear .22s ease}
+.panel.active{display:block}
+@keyframes appear{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.frame{margin-top:18px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(34,37,29,.97),rgba(22,24,19,.98));
+  box-shadow:0 18px 40px var(--shadow);position:relative}
+.frame:before{content:"";position:absolute;top:0;left:0;width:54px;height:3px;background:var(--rust)}
+.frame-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 18px;
+  border-bottom:1px solid var(--line);background:rgba(10,11,9,.22);font:10px "Courier New",monospace;
+  letter-spacing:1.6px;color:var(--olive);text-transform:uppercase}
+.frame-head .right{color:var(--muted)}
+.content{padding:clamp(20px,4vw,42px)}
+.home-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(230px,.75fr);gap:34px;align-items:center}
+.home-copy{padding:8px 0}
+.home-copy .eyebrow{font-size:11px;color:var(--rust);margin:0 0 16px}
+.home-copy h2{font-size:clamp(38px,7vw,76px);line-height:.98;letter-spacing:-2px;font-weight:normal;margin:0 0 17px}
+.home-copy h2 span{color:var(--olive);display:block}
+.display-name{font:clamp(20px,3vw,28px) "Courier New",monospace;color:var(--cream);letter-spacing:1px;margin:0 0 5px;text-transform:uppercase}\n.role{font:12px "Courier New",monospace;color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:22px}
+.intro{font-size:17px;color:#d0cbbb;max-width:580px;line-height:1.75}
+.identity-details{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.detail-chip{border:1px solid #555a46;padding:7px 10px;color:var(--muted);font:10px "Courier New",monospace;letter-spacing:.8px;text-transform:uppercase}
+.portrait-wrap{position:relative;padding:13px;border:1px solid #555a46;background:#11130f;max-width:330px;margin-left:auto}
+.portrait-wrap:before,.portrait-wrap:after{content:"";position:absolute;width:35px;height:35px;border-color:var(--rust);border-style:solid}
+.portrait-wrap:before{top:5px;left:5px;border-width:1px 0 0 1px}
+.portrait-wrap:after{right:5px;bottom:5px;border-width:0 1px 1px 0}
+.portrait{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.75) contrast(1.04);background:#25281f}
+.portrait-caption{display:flex;justify-content:space-between;gap:8px;margin-top:10px;color:var(--muted);font:9px "Courier New",monospace;letter-spacing:1px;text-transform:uppercase}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 24px;padding-bottom:15px;border-bottom:1px solid var(--line)}
+.section-title h2{font-size:clamp(27px,4vw,40px);font-weight:normal;line-height:1.1;margin:0;color:var(--cream)}
+.section-title p{font:10px "Courier New",monospace;color:var(--rust);letter-spacing:1.3px;margin:0;text-align:right}
+h3{color:var(--gold);font-size:17px;font-weight:normal;margin:0 0 10px}
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{padding:20px;border:1px solid #454a3b;background:rgba(10,12,9,.25)}
+.card p:last-child{margin-bottom:0}
+.card ul{padding-left:19px;margin:10px 0 0}
+.card li{margin:0 0 9px;color:#c9c5b6}
+.card li strong{color:var(--cream);font-weight:normal}
+.rule{height:1px;background:#424638;margin:26px 0}
+.quote{border-left:2px solid var(--rust);padding:13px 18px;margin:24px 0 0;background:rgba(11,12,9,.28);color:#d8d1bd;font-size:16px}
+.eyebrow{font-size:10px;color:var(--rust);margin:0 0 8px}
+.mapbox{padding:14px;border:1px solid #454a3b;background:#11130f;margin:20px 0;text-align:center}
+.strengths-map{display:block;width:min(100%,760px);height:auto;margin:auto}
+.small{font:10px "Courier New",monospace;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin:12px 0 0}
+.timeline-item{padding:20px;border-left:2px solid #777b55;background:rgba(10,12,9,.25);margin:0 0 12px}
+.timeline-item .eyebrow{margin-bottom:5px}
+.tag{display:inline-block;border:1px solid #666b50;padding:4px 8px;margin-top:8px;color:var(--olive);font:9px "Courier New",monospace;letter-spacing:1px}
+.skilltree{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.skill{padding:19px;border:1px solid #454a3b;background:rgba(10,12,9,.25)}
+.skill p{color:var(--muted);font-size:14px}
+.track{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;height:10px;margin:18px 0 9px}
+.track span{background:#33372d;border:1px solid #4b503e}
+.track span.on{background:linear-gradient(180deg,#b5b58a,#777c55);border-color:#9b9d70}
+.skill-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:9px "Courier New",monospace;letter-spacing:1px;text-transform:uppercase}
+.skill-meta strong{color:var(--gold);font-weight:normal;text-align:right}
+.works-box{min-height:250px;display:flex;align-items:center;justify-content:center;text-align:center;
+  border:1px dashed #6a6d53;background:linear-gradient(135deg,rgba(11,13,9,.35),rgba(55,53,38,.15));
+  position:relative;overflow:hidden}
+.works-box:before,.works-box:after{content:"";position:absolute;width:55px;height:55px;border-color:#777b55;border-style:solid;opacity:.65}
+.works-box:before{top:14px;left:14px;border-width:1px 0 0 1px}
+.works-box:after{bottom:14px;right:14px;border-width:0 1px 1px 0}
+.works-box span{font:clamp(14px,2vw,18px) "Courier New",monospace;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+footer{display:flex;justify-content:space-between;gap:12px;padding:18px 2px;color:#858473;font:9px "Courier New",monospace;letter-spacing:1.2px;text-transform:uppercase}
+@media(max-width:720px){.home-layout{grid-template-columns:1fr}.portrait-wrap{margin:0;max-width:250px}.masthead{align-items:start}.masthead-note{max-width:145px}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.shell{width:calc(100% - 22px);margin:15px auto 35px}.masthead{padding:19px 2px}.masthead-note{font-size:9px}.tab{padding:10px 12px;font-size:10px}.content{padding:19px}.grid2,.grid3,.skilltree{grid-template-columns:1fr}.section-title{align-items:start;flex-direction:column}.section-title p{text-align:left}.home-copy h2{font-size:48px}.intro{font-size:15px}.portrait-wrap{max-width:210px}.frame-head{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topline"><span>Personal archive / field dossier</span><span>File 001 · Active</span></div>
+  <header class="masthead">
+    <div><p class="brand-kicker">A personal record</p><h1>THE CURRENT FILE</h1></div>
+    <div class="masthead-note">A snapshot of who I am,<br>where I stand, and what matters.</div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Portfolio sections">
+    <button class="tab" id="tab-home" role="tab" aria-controls="home" aria-selected="true" data-tab="home">HOME</button>
+    <button class="tab" id="tab-profile" role="tab" aria-controls="profile" aria-selected="false" data-tab="profile">PROFILE</button>
+    <button class="tab" id="tab-background" role="tab" aria-controls="background" aria-selected="false" data-tab="background">BACKGROUND</button>
+    <button class="tab" id="tab-values" role="tab" aria-controls="values" aria-selected="false" data-tab="values">VALUES</button>
+    <button class="tab" id="tab-skills" role="tab" aria-controls="skills" aria-selected="false" data-tab="skills">SKILLS</button>
+    <button class="tab" id="tab-works" role="tab" aria-controls="works" aria-selected="false" data-tab="works">WORKS</button>
+  </nav>
+
+  <main>
+    <section class="panel active" id="home" role="tabpanel" aria-labelledby="tab-home">
+      <div class="frame">
+        <div class="frame-head"><span>01 / Identity record</span><span class="right">Personal profile</span></div>
+        <div class="content home-layout">
+          <div class="home-copy">
+            <p class="eyebrow">Welcome to my</p>
+            <h2>CHARACTER <span>PROFILE</span></h2>
+            <p class="display-name">JAUN DIEZMO</p>\n            <div class="role">Multimedia Arts Student</div>
+            <p class="intro">I'm someone who enjoys exploring different interests, learning how things work, and figuring things out along the way. I'm interested in creative work and technology, and I'm still discovering where I want to take those interests.</p>
+            <div class="identity-details">
+              <span class="detail-chip">BMMA · CIIT</span>
+              <span class="detail-chip">Creative + Technology</span>
+              <span class="detail-chip">Currently Learning</span>
+            </div>
+          </div>
+          <div class="portrait-wrap">
+            <img class="portrait" src="profile.png" alt="Profile portrait">
+            <div class="portrait-caption"><span>Subject / 001</span><span>Current status</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="profile" role="tabpanel" aria-labelledby="tab-profile" hidden>
+      <div class="frame">
+        <div class="frame-head"><span>02 / Character build</span><span class="right">Strengths & weaknesses</span></div>
+        <div class="content">
+          <div class="section-title"><h2>Character Build</h2><p>Traits · habits · reflections</p></div>
+          <p class="muted">This section reflects how I currently understand myself, including my strengths, learning preferences, and the areas I know I still need to work on.</p>
+          <div class="mapbox"><img src="Zomboid Style character.png" alt="Personal strengths map" class="strengths-map"><p class="small">Personal strengths map</p></div>
+          <div class="grid2">
+            <div class="card"><h3>Strengths I Recognize</h3><ul>
+              <li><strong>Humor:</strong> I often use humor to handle situations and connect with people.</li>
+              <li><strong>Curiosity:</strong> I enjoy gathering information and understanding how things work.</li>
+              <li><strong>Willingness to learn:</strong> I ask questions and seek guidance when I don't understand something.</li>
+              <li><strong>Adaptability:</strong> I can adjust and move forward after disappointment instead of dwelling on it indefinitely.</li>
+              <li><strong>Research and following instructions:</strong> I am comfortable finding information and completing clearly defined tasks.</li>
+            </ul></div>
+            <div class="card"><h3>Areas I Want to Improve</h3><ul>
+              <li><strong>Discipline and consistency:</strong> I tend to rely on short bursts of work and deadlines.</li>
+              <li><strong>Initiative:</strong> I want to contribute ideas more readily instead of waiting for others to lead.</li>
+              <li><strong>Confidence:</strong> I sometimes hold back when I feel less knowledgeable than the people around me.</li>
+              <li><strong>Focus:</strong> I can become distracted, especially when a task does not interest me.</li>
+              <li><strong>Artistic skills:</strong> I want to develop the technical ability to bring my ideas to life.</li>
+            </ul></div>
+          </div>
+          <div class="rule"></div><h2>How I Understand Myself</h2>
+          <div class="grid3">
+            <div class="card"><h3>How I Approach Life</h3><p>Humor, curiosity, and kindness are qualities I value in myself. I often use humor to handle situations and connect with others. I'm naturally curious and enjoy learning new things, while I'm still figuring out how to practice kindness consistently in everyday life.</p></div>
+            <div class="card"><h3>How I Learn</h3><p>I find it easier to understand new information when I can see it. Diagrams, demonstrations, visual examples, and organized notes help me process ideas. I'm also more motivated when I can connect what I'm learning to something that genuinely interests me.</p></div>
+            <div class="card"><h3>What I'm Working On</h3><p>I've come to recognize that consistency, focus, and confidence are areas I need to improve. I sometimes struggle to stay motivated when a task doesn't interest me, and I can hesitate to share my ideas when I'm unsure of myself. These are things I'm gradually learning to work on.</p></div>
+          </div>
+          <div class="rule"></div><h2>Personal Reflections</h2>
+          <p>One thing I've realized is that I often focus more on the result than the process. I feel motivated when I'm interested in a task or can see a good outcome, but I sometimes settle for completing the requirements instead of exploring how much I can improve the work.</p>
+          <p>I've also learned that developing artistic skills takes patience. Coming from a STEM background, I was used to understanding some topics relatively quickly. Art has shown me that knowing what I want to create is different from having the skills to execute it. I'm learning to accept being a beginner and to treat practice as part of the process.</p>
+          <p>During group work, I found that I could contribute by researching and completing assigned tasks, but I sometimes hesitated to share ideas or take initiative. I want to become more confident in expressing my thoughts and more comfortable contributing even when I'm unsure.</p>
+          <div class="quote">I don't need to have everything figured out yet. I need to keep learning, practicing, and becoming more willing to try.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="background" role="tabpanel" aria-labelledby="tab-background" hidden>
+      <div class="frame">
+        <div class="frame-head"><span>03 / Background file</span><span class="right">Education & experience</span></div>
+        <div class="content">
+          <div class="section-title"><h2>Background</h2><p>Education · experience</p></div>
+          <h3>Educational Background</h3>
+          <div class="timeline-item"><p class="eyebrow">Current</p><h3>CIIT College of Arts and Technology</h3><p>Bachelor of Multimedia Arts (BMMA)</p><p class="muted">Currently developing my foundation in multimedia arts while exploring creative interests and areas of specialization.</p></div>
+          <div class="timeline-item"><p class="eyebrow">Previous academic background</p><h3>Senior High School — STEM</h3><p class="muted">My STEM background gave me experience with analytical and structured learning. Moving into Multimedia Arts is allowing me to develop a different set of skills and become more comfortable with creative work.</p></div>
+          <div class="rule"></div><h2>Achievements & Projects</h2>
+          <p class="muted">Most of my experience so far comes from school, personal interests, and the tasks I've taken on. I don't have a long list of formal awards to show, so this section focuses on the kind of work and experience I'm building at the moment.</p>
+          <div class="grid2">
+            <div class="card"><h3>Projects</h3><p>I'm currently building my creative foundation through my Multimedia Arts studies. As I gain more experience, the work I choose to share here will reflect the skills and interests I'm developing.</p><span class="tag">Current focus</span></div>
+            <div class="card"><h3>Achievements & Recognition</h3><p>At this point, I'm more focused on learning and improving than collecting awards. I see the skills I develop, the work I complete, and the progress I make as important milestones too.</p><span class="tag">Personal milestones</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="values" role="tabpanel" aria-labelledby="tab-values" hidden>
+      <div class="frame">
+        <div class="frame-head"><span>04 / Personal compass</span><span class="right">Life direction</span></div>
+        <div class="content">
+          <div class="section-title"><h2>Values & Direction</h2><p>Vision · mission · principles</p></div>
+          <h3>Life Vision</h3>
+          <p>To build a successful and fulfilling life through work that I genuinely enjoy and take pride in. I want to create things that reflect my interests and abilities while gaining the financial stability and independence to enjoy the life I build.</p>
+          <div class="rule"></div><h3>Life Mission</h3>
+          <p>To continuously develop my skills, explore my interests, and take opportunities that allow me to grow. I want to turn my ideas and abilities into meaningful work, remain open to learning, and work toward a future where I can support myself through something I'm proud to create.</p>
+          <div class="rule"></div><h2>Personal Values</h2>
+          <div class="grid2">
+            <div class="card"><h3>Independence</h3><p>I want to build a comfortable life through my own efforts and eventually be able to support myself and live independently.</p></div>
+            <div class="card"><h3>Self-Respect</h3><p>I want to become someone I can genuinely respect, someone who can stand up for themselves and make decisions without constantly seeking approval.</p></div>
+            <div class="card"><h3>Authenticity</h3><p>I value being able to express who I am instead of changing myself just to meet other people's expectations.</p></div>
+            <div class="card"><h3>Growth & Dependability</h3><p>I want to keep improving while becoming someone others can rely on to take responsibility and put genuine effort into their work.</p></div>
+          </div>
+          <div class="quote">For me, success isn't only about what I earn or achieve. It's also about having the freedom to live on my own terms and being proud of the person I've become.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="skills" role="tabpanel" aria-labelledby="tab-skills"
