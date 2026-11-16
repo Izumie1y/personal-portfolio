@@ -1,301 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Dossier</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#141e1f">
+<meta name="description" content="Izume1y — illustration, ideas, and works in progress. Meet Jaun Diezmo and explore his creative world.">
+<title>Izume1y | Illustrator</title>
 <style>
-:root{
-  --bg:#11120f;--panel:#1a1c17;--panel2:#22251e;--line:#4b5140;
-  --cream:#e7e1cf;--muted:#a5a18f;--olive:#a8ad7b;--rust:#bd7658;
-  --gold:#d8bd7b;--shadow:rgba(0,0,0,.4)
-}
-*{box-sizing:border-box}
-html{background:var(--bg)}
-body{margin:0;background:
-  radial-gradient(ellipse at 15% 10%,rgba(129,116,76,.12),transparent 36%),
-  linear-gradient(135deg,#11120f,#171914 55%,#10110e);
-  color:var(--cream);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;
-  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.035) 4px)}
-button{font:inherit}
-.shell{width:min(1120px,calc(100% - 36px));margin:32px auto 60px;position:relative}
-.topline{display:flex;justify-content:space-between;gap:16px;align-items:center;
-  padding:0 2px 13px;border-bottom:1px solid var(--line);font:11px/1.4 "Courier New",monospace;
-  color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
-.topline span:last-child{color:var(--rust)}
-.masthead{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:24px 2px 22px}
-.brand-kicker,.eyebrow,.micro,.tab,.label,.stamp,.meta{font-family:"Courier New",monospace;text-transform:uppercase;letter-spacing:1.5px}
-.brand-kicker{font-size:11px;color:var(--rust);margin:0 0 7px}
-.masthead h1{font-size:clamp(27px,5vw,48px);line-height:1;margin:0;font-weight:normal;letter-spacing:-1.5px}
-.masthead-note{max-width:240px;text-align:right;color:var(--muted);font:11px/1.6 "Courier New",monospace}
-.tabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;padding:8px;
-  background:#171913;border:1px solid var(--line);border-bottom:2px solid #737451}
-.tab{flex:0 0 auto;border:1px solid transparent;background:transparent;color:var(--muted);
-  padding:12px 15px;font-size:11px;cursor:pointer;transition:.18s}
-.tab:hover{color:var(--cream);border-color:#565b46}
-.tab[aria-selected="true"]{background:#292c22;border-color:#666b50;color:var(--gold)}
-.tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.panel{display:none;animation:appear .22s ease}
-.panel[hidden]{display:none !important}
-.panel.active{display:block}
-@keyframes appear{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
-.frame{margin-top:18px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(34,37,29,.97),rgba(22,24,19,.98));
-  box-shadow:0 18px 40px var(--shadow);position:relative}
-.frame:before{content:"";position:absolute;top:0;left:0;width:54px;height:3px;background:var(--rust)}
-.frame-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 18px;
-  border-bottom:1px solid var(--line);background:rgba(10,11,9,.22);font:10px "Courier New",monospace;
-  letter-spacing:1.6px;color:var(--olive);text-transform:uppercase}
-.frame-head .right{color:var(--muted)}
-.content{padding:clamp(20px,4vw,42px)}
-.home-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(230px,.75fr);gap:34px;align-items:center}
-.home-copy{padding:8px 0}
-.home-copy .eyebrow{font-size:11px;color:var(--rust);margin:0 0 16px}
-.home-copy h2{font-size:clamp(38px,7vw,76px);line-height:.98;letter-spacing:-2px;font-weight:normal;margin:0 0 17px}
-.home-copy h2 span{color:var(--olive);display:block}
-.display-name{font:clamp(20px,3vw,28px) "Courier New",monospace;color:var(--cream);letter-spacing:1px;margin:0 0 5px;text-transform:uppercase}
-.role{font:12px "Courier New",monospace;color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:22px}
-.intro{font-size:17px;color:#d0cbbb;max-width:580px;line-height:1.75}
-.identity-details{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.detail-chip{border:1px solid #555a46;padding:7px 10px;color:var(--muted);font:10px "Courier New",monospace;letter-spacing:.8px;text-transform:uppercase}
-.portrait-wrap{position:relative;padding:13px;border:1px solid #555a46;background:#11130f;max-width:330px;margin-left:auto}
-.portrait-wrap:before,.portrait-wrap:after{content:"";position:absolute;width:35px;height:35px;border-color:var(--rust);border-style:solid}
-.portrait-wrap:before{top:5px;left:5px;border-width:1px 0 0 1px}
-.portrait-wrap:after{right:5px;bottom:5px;border-width:0 1px 1px 0}
-.portrait{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.75) contrast(1.04);background:#25281f}
-.portrait-caption{display:flex;justify-content:space-between;gap:8px;margin-top:10px;color:var(--muted);font:9px "Courier New",monospace;letter-spacing:1px;text-transform:uppercase}
-.section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 24px;padding-bottom:15px;border-bottom:1px solid var(--line)}
-.section-title h2{font-size:clamp(27px,4vw,40px);font-weight:normal;line-height:1.1;margin:0;color:var(--cream)}
-.section-title p{font:10px "Courier New",monospace;color:var(--rust);letter-spacing:1.3px;margin:0;text-align:right}
-h3{color:var(--gold);font-size:17px;font-weight:normal;margin:0 0 10px}
-p{margin:0 0 14px}
-.muted{color:var(--muted)}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.card{padding:20px;border:1px solid #454a3b;background:rgba(10,12,9,.25)}
-.card p:last-child{margin-bottom:0}
-.card ul{padding-left:19px;margin:10px 0 0}
-.card li{margin:0 0 9px;color:#c9c5b6}
-.card li strong{color:var(--cream);font-weight:normal}
-.rule{height:1px;background:#424638;margin:26px 0}
-.quote{border-left:2px solid var(--rust);padding:13px 18px;margin:24px 0 0;background:rgba(11,12,9,.28);color:#d8d1bd;font-size:16px}
-.eyebrow{font-size:10px;color:var(--rust);margin:0 0 8px}
-.mapbox{padding:14px;border:1px solid #454a3b;background:#11130f;margin:20px 0;text-align:center}
-.strengths-map{display:block;width:min(100%,760px);height:auto;margin:auto}
-.small{font:10px "Courier New",monospace;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin:12px 0 0}
-.timeline-item{padding:20px;border-left:2px solid #777b55;background:rgba(10,12,9,.25);margin:0 0 12px}
-.timeline-item .eyebrow{margin-bottom:5px}
-.tag{display:inline-block;border:1px solid #666b50;padding:4px 8px;margin-top:8px;color:var(--olive);font:9px "Courier New",monospace;letter-spacing:1px}
-.skilltree{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.skill{padding:19px;border:1px solid #454a3b;background:rgba(10,12,9,.25)}
-.skill p{color:var(--muted);font-size:14px}
-.track{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;height:10px;margin:18px 0 9px}
-.track span{background:#33372d;border:1px solid #4b503e}
-.track span.on{background:linear-gradient(180deg,#b5b58a,#777c55);border-color:#9b9d70}
-.skill-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font:9px "Courier New",monospace;letter-spacing:1px;text-transform:uppercase}
-.skill-meta strong{color:var(--gold);font-weight:normal;text-align:right}
-.works-box{min-height:250px;display:flex;align-items:center;justify-content:center;text-align:center;
-  border:1px dashed #6a6d53;background:linear-gradient(135deg,rgba(11,13,9,.35),rgba(55,53,38,.15));
-  position:relative;overflow:hidden}
-.works-box:before,.works-box:after{content:"";position:absolute;width:55px;height:55px;border-color:#777b55;border-style:solid;opacity:.65}
-.works-box:before{top:14px;left:14px;border-width:1px 0 0 1px}
-.works-box:after{bottom:14px;right:14px;border-width:0 1px 1px 0}
-.works-box span{font:clamp(14px,2vw,18px) "Courier New",monospace;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
-footer{display:flex;justify-content:space-between;gap:12px;padding:18px 2px;color:#858473;font:9px "Courier New",monospace;letter-spacing:1.2px;text-transform:uppercase}
-@media(max-width:720px){.home-layout{grid-template-columns:1fr}.portrait-wrap{margin:0;max-width:250px}.masthead{align-items:start}.masthead-note{max-width:145px}.grid3{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.shell{width:calc(100% - 22px);margin:15px auto 35px}.masthead{padding:19px 2px}.masthead-note{font-size:9px}.tab{padding:10px 12px;font-size:10px}.content{padding:19px}.grid2,.grid3,.skilltree{grid-template-columns:1fr}.section-title{align-items:start;flex-direction:column}.section-title p{text-align:left}.home-copy h2{font-size:48px}.intro{font-size:15px}.portrait-wrap{max-width:210px}.frame-head{font-size:9px}}
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Pixelify+Sans:wght@400;500&display=swap');
+#jaun-title-screen{--jg-ink:#f1e3bc;--jg-dim:#beb89e;--jg-gold:#deb577;--jg-panel:#202924;--jg-edge:#666a51;position:relative;isolation:isolate;overflow:hidden;background:#141e1f;color:var(--jg-ink);font:400 16px/1.6 Arial,Helvetica,sans-serif;min-height:100svh;padding:64px 32px 48px;display:grid;place-items:center}
+#jaun-title-screen *{box-sizing:border-box}
+#jaun-title-screen [hidden]{display:none!important}
+#jaun-title-screen .jg-world{position:absolute;inset:-12px;z-index:-3;filter:blur(2px);opacity:.8;pointer-events:none}
+#jaun-title-screen canvas{display:block;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+#jaun-title-screen .jg-shade{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% 43%,#11191844 0%,#0c151b77 45%,#080f16eb 100%),linear-gradient(0deg,#0b1219cc,transparent 35%);pointer-events:none}
+#jaun-title-screen .jg-center{width:100%;max-width:730px;text-align:center;position:relative}
+#jaun-title-screen .jg-home{max-width:450px;margin:auto;text-shadow:none}
+#jaun-title-screen .jg-overline{font:400 13px/1.5 Arial,Helvetica,sans-serif;letter-spacing:.8px;color:var(--jg-gold);margin:0 0 20px}
+#jaun-title-screen .jg-logo{font:italic 400 clamp(56px,9vw,88px)/1.05 'Permanent Marker',Georgia,serif;letter-spacing:0;margin:0 0 25px;color:#f3e5bb;text-shadow:0 3px #9b7850,0 6px #4c4634,3px 8px #0b1617,-3px 0 #263b35,3px 0 #263b35}
+#jaun-title-screen .jg-logo span{color:#dfb780}
+#jaun-title-screen .jg-subtitle{position:relative;isolation:isolate;display:table;font:500 clamp(28px,4.5vw,36px)/1.1 'Pixelify Sans','Courier New',monospace;letter-spacing:1px;color:#f2c28e;margin:8px auto 42px;padding:0 12px 9px;transform:rotate(-5deg);text-shadow:1px 2px #10201c}
+#jaun-title-screen .jg-subtitle:after{content:"";position:absolute;left:0;right:0;bottom:0;height:9px;z-index:-1;background:#ba7955;clip-path:polygon(0 45%,16% 12%,44% 26%,78% 0,100% 32%,94% 67%,67% 74%,35% 100%,8% 76%)}
+#jaun-title-screen .jg-menu{display:grid;gap:12px;width:100%;max-width:310px;margin:auto}
+#jaun-title-screen button{font:400 24px/1.2 'Pixelify Sans','Courier New',monospace;color:var(--jg-ink);border-radius:0;min-height:52px}
+#jaun-title-screen .jg-menu button{position:relative;background:#29332d;border:2px solid #111c1a;box-shadow:inset 3px 3px #77806b,inset -3px -3px #19221f,0 3px #090e12;padding:12px 40px;text-shadow:1px 1px #111817;transition:background .12s,color .12s}
+#jaun-title-screen .jg-menu button:hover,#jaun-title-screen .jg-menu button:focus-visible{background:#48513a;color:#ffe1a0;box-shadow:inset 3px 3px #a1a67a,inset -3px -3px #262e24,0 3px #090e12}
+#jaun-title-screen .jg-pointer{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--jg-gold);opacity:0}
+#jaun-title-screen button:hover .jg-pointer,#jaun-title-screen button:focus-visible .jg-pointer{opacity:1}
+#jaun-title-screen .jg-window{background:var(--jg-panel);border:3px solid #111b19;box-shadow:inset 3px 3px #727763,inset -3px -3px #101b18,0 9px 0 #08100ec4,0 18px 65px #0009;padding:6px 29px 25px;text-align:left}
+#jaun-title-screen .jg-window-top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #535d48;color:#c0c3ab;padding:8px 0 10px;font:13px/1.5 Arial,Helvetica,sans-serif;letter-spacing:1.5px}
+#jaun-title-screen button.jg-close{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;min-height:44px;padding:0;color:#eadfc4;background:#354034;border:2px solid #111b19;box-shadow:inset 2px 2px #768066,inset -2px -2px #18251d;font:400 27px/1 Arial,Helvetica,sans-serif}
+#jaun-title-screen button.jg-close:hover{background:#694434;color:#fff0d6;box-shadow:inset 2px 2px #a47351,inset -2px -2px #382a21}
+#jaun-title-screen .jg-heading{padding:27px 0 23px;text-align:center}
+#jaun-title-screen .jg-heading .jg-overline{margin:0 0 8px;font-size:13px}
+#jaun-title-screen .jg-window h2{font:400 clamp(34px,5vw,45px)/1.1 'Pixelify Sans','Courier New',monospace;margin:0;color:var(--jg-ink);text-shadow:2px 3px #101914}
+#jaun-title-screen .jg-columns{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+#jaun-title-screen .jg-stat-column{min-width:0}
+#jaun-title-screen .jg-stat-column h3{font:400 23px/1.3 'Pixelify Sans','Courier New',monospace;color:var(--jg-gold);margin:0 0 22px;padding-bottom:10px;border-bottom:1px solid #535d48}
+#jaun-title-screen .jg-stat-name{display:flex;justify-content:space-between;gap:12px;font-size:14px;flex-wrap:wrap}
+#jaun-title-screen .jg-stat-name span:last-child{color:var(--jg-dim);font-size:13px}
+#jaun-title-screen .jg-rating-note{font-size:13px;text-align:center;color:var(--jg-dim);margin:20px 0}
+#jaun-title-screen .jg-empty{padding:80px 0;text-align:center}
+#jaun-title-screen .jg-empty h2{font-size:clamp(40px,7vw,64px)}
+#jaun-title-screen .jg-character{display:grid;grid-template-columns:178px minmax(0,1fr);gap:28px;align-items:center;padding:28px 0}
+#jaun-title-screen .jg-avatar{margin:0;text-align:center;background:#17221d;padding:8px;border:2px solid #0e1713;box-shadow:inset 2px 2px #59654e,inset -2px -2px #101813}
+#jaun-title-screen .jg-avatar-slot{aspect-ratio:1;overflow:hidden;background:#111a16}
+#jaun-title-screen .jg-avatar img{width:100%;height:100%;display:block;object-fit:cover}
+#jaun-title-screen .jg-portrait-placeholder{height:100%;display:flex;flex-direction:column;justify-content:center;gap:7px;color:#c3c7b3;background:repeating-linear-gradient(0deg,transparent 0 23px,#35423555 23px 24px),repeating-linear-gradient(90deg,transparent 0 23px,#35423555 23px 24px),#19251d;font:400 21px/1.3 'Pixelify Sans','Courier New',monospace}
+#jaun-title-screen .jg-portrait-placeholder small{font:400 13px/1.4 Arial,Helvetica,sans-serif;color:#a6b29f}
+#jaun-title-screen .jg-avatar figcaption{font:400 22px/1.4 'Pixelify Sans','Courier New',monospace;color:var(--jg-gold);padding:8px 0 2px}
+#jaun-title-screen .jg-identity-label{font:400 12px/1.5 Arial,Helvetica,sans-serif;letter-spacing:1px;color:var(--jg-dim);margin:0 0 9px}
+#jaun-title-screen .jg-identity h2{font-size:clamp(28px,4.5vw,38px);line-height:1.2}
+#jaun-title-screen .jg-bio{font-size:15px;color:#e0dfcb;margin:14px 0 18px;max-width:340px}
+#jaun-title-screen .jg-identity-facts{font-size:13px;margin:0}
+#jaun-title-screen .jg-identity-facts>div{display:grid;grid-template-columns:67px 1fr;gap:12px;margin-top:7px}
+#jaun-title-screen .jg-identity-facts dt{color:var(--jg-dim)}
+#jaun-title-screen .jg-identity-facts dd{margin:0;color:var(--jg-ink)}
+#jaun-title-screen .jg-traits{border-top:1px solid #535d48;padding-top:20px}
+#jaun-title-screen .jg-traits h3,#jaun-title-screen .jg-direction h3{font:400 23px/1.3 'Pixelify Sans','Courier New',monospace;color:var(--jg-gold);margin:0 0 14px}
+#jaun-title-screen .jg-trait-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#jaun-title-screen button.jg-trait{font:400 14px/1.3 Arial,Helvetica,sans-serif;min-height:48px;overflow-wrap:anywhere;padding:10px 6px;background:#2c372b;color:var(--jg-ink);border:2px solid #111c16;box-shadow:inset 2px 2px #657158,inset -2px -2px #18221b}
+#jaun-title-screen button.jg-trait[aria-pressed="true"]{background:#495239;color:#ffe5ad;box-shadow:inset 2px 2px #b0b087,inset -2px -2px #252e21}
+#jaun-title-screen .jg-trait-detail{min-height:44px;margin:14px 0 18px;font-size:14px;color:#d1d5c1}
+#jaun-title-screen .jg-direction{border-top:1px solid #414e3e;padding-top:18px}
+#jaun-title-screen .jg-direction h3{font:400 13px/1.5 Arial,Helvetica,sans-serif;color:var(--jg-dim);margin-bottom:5px}
+#jaun-title-screen .jg-direction p{margin:0 0 20px;font-size:15px;color:var(--jg-ink)}
+#jaun-title-screen .jg-background{border-top:1px solid #414e3e;padding:13px 0 0;color:var(--jg-dim);font-size:13px}
+#jaun-title-screen .jg-background summary{min-height:34px;display:list-item;align-content:center;color:var(--jg-ink)}
+#jaun-title-screen .jg-background p{margin:10px 0 2px;line-height:1.7}
+#jaun-title-screen .jg-columns{gap:24px}
+#jaun-title-screen .jg-stat-column h3{margin-bottom:12px}
+#jaun-title-screen button.jg-skill-entry{display:block;width:100%;min-height:78px;margin-bottom:8px;padding:12px;background:#17221b;border:1px solid #414e3c;box-shadow:inset 2px 2px #0f1913;color:var(--jg-ink);font:400 14px/1.4 Arial,Helvetica,sans-serif;text-align:left}
+#jaun-title-screen button.jg-skill-entry:hover{background:#283626}
+#jaun-title-screen button.jg-skill-entry[aria-pressed="true"]{background:#36432b;border-color:#929e6e;box-shadow:inset 3px 0 #bbc890}
+#jaun-title-screen .jg-skill-entry .jg-stat-name{font-size:14px;align-items:center;flex-wrap:nowrap}
+#jaun-title-screen .jg-skill-entry .jg-stat-name span:first-child{flex:1;min-width:0}
+#jaun-title-screen .jg-skill-entry .jg-stat-name span:last-child{font-size:12px;color:#c0c8b0;white-space:nowrap}
+#jaun-title-screen .jg-segments{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;margin-top:11px;height:10px}
+#jaun-title-screen .jg-segments i{display:block;background:#101a13}
+#jaun-title-screen .jg-segments i[data-filled="true"]{background:#bbc88c;box-shadow:inset 0 2px #d5dda8}
+#jaun-title-screen .jg-skill-inspect{border-top:1px solid #536148;margin-top:20px;padding-top:18px;min-height:100px}
+#jaun-title-screen .jg-skill-inspect h3{font:400 21px/1.3 'Pixelify Sans','Courier New',monospace;color:var(--jg-gold);margin:0 0 7px}
+#jaun-title-screen .jg-skill-inspect p{font:400 14px/1.6 Arial,Helvetica,sans-serif;color:#d4d8c4;margin:0}
+#jaun-title-screen .jg-empty-frame{min-height:240px;display:grid;place-items:center;border:2px dashed #657154;padding:25px 16px;background:#1a241e}
+#jaun-title-screen .jg-empty{padding:42px 0}
+#jaun-title-screen .jg-logo{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:560px){#jaun-title-screen .jg-character{grid-template-columns:1fr;gap:22px;text-align:center}#jaun-title-screen .jg-avatar{width:160px;margin:auto}#jaun-title-screen .jg-bio{margin:14px auto 18px}#jaun-title-screen .jg-identity-facts{max-width:260px;margin:auto;text-align:left}#jaun-title-screen .jg-trait-slots{gap:5px}#jaun-title-screen button.jg-trait{font-size:13px}}
+@media(max-width:560px){#jaun-title-screen{padding:70px 18px 45px;min-height:100svh}#jaun-title-screen .jg-logo{font-size:60px;letter-spacing:0}#jaun-title-screen .jg-window{padding:6px 18px 24px}#jaun-title-screen .jg-columns{grid-template-columns:1fr;gap:22px}#jaun-title-screen .jg-menu{max-width:280px}#jaun-title-screen .jg-overline{letter-spacing:1.5px}#jaun-title-screen .jg-window-top{letter-spacing:.5px}}
+@media(prefers-reduced-motion:reduce){#jaun-title-screen button{transition:none}}
+
+html{background:#141e1f;color-scheme:dark}body{margin:0}button,summary{cursor:pointer}button:focus-visible,summary:focus-visible{outline:2px solid #f4d59a;outline-offset:4px}#jaun-title-screen .jg-logo{max-width:100%;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
-<div class="shell">
-  <div class="topline"><span>Personal archive / field dossier</span><span>File 001 · Active</span></div>
-  <header class="masthead">
-    <div><p class="brand-kicker">A personal record</p><h1>THE CURRENT FILE</h1></div>
-    <div class="masthead-note">A snapshot of who I am,<br>where I stand, and what matters.</div>
-  </header>
+<div id="jaun-title-screen">
+  <div class="jg-world" aria-hidden="true"><canvas width="384" height="270"></canvas></div>
+  <div class="jg-shade" aria-hidden="true"></div>
+  <main class="jg-center">
+    <section class="jg-home" id="jg-screen-home" data-screen="home" aria-label="Portfolio main menu">
 
-  <nav class="tabs" role="tablist" aria-label="Portfolio sections">
-    <button class="tab" id="tab-home" role="tab" aria-controls="home" aria-selected="true" data-tab="home">HOME</button>
-    <button class="tab" id="tab-profile" role="tab" aria-controls="profile" aria-selected="false" data-tab="profile">PROFILE</button>
-    <button class="tab" id="tab-background" role="tab" aria-controls="background" aria-selected="false" data-tab="background">BACKGROUND</button>
-    <button class="tab" id="tab-values" role="tab" aria-controls="values" aria-selected="false" data-tab="values">VALUES</button>
-    <button class="tab" id="tab-skills" role="tab" aria-controls="skills" aria-selected="false" data-tab="skills">SKILLS</button>
-    <button class="tab" id="tab-works" role="tab" aria-controls="works" aria-selected="false" data-tab="works">WORKS</button>
-  </nav>
+      <h1 class="jg-logo"><span>Izume1y</span></h1>
+      <p class="jg-subtitle">Illustrator</p>
+      <nav class="jg-menu" aria-label="Portfolio sections">
+        <button type="button" aria-controls="jg-screen-about" aria-expanded="false" data-open="about">About<span class="jg-pointer" aria-hidden="true">◆</span></button>
+        <button type="button" aria-controls="jg-screen-skills" aria-expanded="false" data-open="skills">Skills<span class="jg-pointer" aria-hidden="true">◆</span></button>
+        <button type="button" aria-controls="jg-screen-works" aria-expanded="false" data-open="works">Works<span class="jg-pointer" aria-hidden="true">◆</span></button>
+      </nav>
 
-  <main>
-    <section class="panel active" id="home" role="tabpanel" aria-labelledby="tab-home">
-      <div class="frame">
-        <div class="frame-head"><span>01 / Identity record</span><span class="right">Personal profile</span></div>
-        <div class="content home-layout">
-          <div class="home-copy">
-            <p class="eyebrow">Welcome to my</p>
-            <h2>CHARACTER <span>PROFILE</span></h2>
-            <p class="display-name">JAUN DIEZMO</p>
-            <div class="role">Multimedia Arts Student</div>
-            <p class="intro">I'm someone who enjoys exploring different interests, learning how things work, and figuring things out along the way. I'm interested in creative work and technology, and I'm still discovering where I want to take those interests.</p>
-            <div class="identity-details">
-              <span class="detail-chip">BMMA · CIIT</span>
-              <span class="detail-chip">Creative + Technology</span>
-              <span class="detail-chip">Currently Learning</span>
-            </div>
-          </div>
-          <div class="portrait-wrap">
-            <img class="portrait" src="profile.png" alt="Profile portrait">
-            <div class="portrait-caption"><span>Subject / 001</span><span>Current status</span></div>
-          </div>
-        </div>
-      </div>
     </section>
-
-    <section class="panel" id="profile" role="tabpanel" aria-labelledby="tab-profile" hidden>
-      <div class="frame">
-        <div class="frame-head"><span>02 / Character build</span><span class="right">Strengths & weaknesses</span></div>
-        <div class="content">
-          <div class="section-title"><h2>Character Build</h2><p>Traits · habits · reflections</p></div>
-          <p class="muted">This section reflects how I currently understand myself, including my strengths, learning preferences, and the areas I know I still need to work on.</p>
-          <div class="mapbox"><img src="Zomboid Style character.png" alt="Personal strengths map" class="strengths-map"><p class="small">Personal strengths map</p></div>
-          <div class="grid2">
-            <div class="card"><h3>Strengths I Recognize</h3><ul>
-              <li><strong>Humor:</strong> I often use humor to handle situations and connect with people.</li>
-              <li><strong>Curiosity:</strong> I enjoy gathering information and understanding how things work.</li>
-              <li><strong>Willingness to learn:</strong> I ask questions and seek guidance when I don't understand something.</li>
-              <li><strong>Adaptability:</strong> I can adjust and move forward after disappointment instead of dwelling on it indefinitely.</li>
-              <li><strong>Research and following instructions:</strong> I am comfortable finding information and completing clearly defined tasks.</li>
-            </ul></div>
-            <div class="card"><h3>Areas I Want to Improve</h3><ul>
-              <li><strong>Discipline and consistency:</strong> I tend to rely on short bursts of work and deadlines.</li>
-              <li><strong>Initiative:</strong> I want to contribute ideas more readily instead of waiting for others to lead.</li>
-              <li><strong>Confidence:</strong> I sometimes hold back when I feel less knowledgeable than the people around me.</li>
-              <li><strong>Focus:</strong> I can become distracted, especially when a task does not interest me.</li>
-              <li><strong>Artistic skills:</strong> I want to develop the technical ability to bring my ideas to life.</li>
-            </ul></div>
-          </div>
-          <div class="rule"></div><h2>How I Understand Myself</h2>
-          <div class="grid3">
-            <div class="card"><h3>How I Approach Life</h3><p>Humor, curiosity, and kindness are qualities I value in myself. I often use humor to handle situations and connect with others. I'm naturally curious and enjoy learning new things, while I'm still figuring out how to practice kindness consistently in everyday life.</p></div>
-            <div class="card"><h3>How I Learn</h3><p>I find it easier to understand new information when I can see it. Diagrams, demonstrations, visual examples, and organized notes help me process ideas. I'm also more motivated when I can connect what I'm learning to something that genuinely interests me.</p></div>
-            <div class="card"><h3>What I'm Working On</h3><p>I've come to recognize that consistency, focus, and confidence are areas I need to improve. I sometimes struggle to stay motivated when a task doesn't interest me, and I can hesitate to share my ideas when I'm unsure of myself. These are things I'm gradually learning to work on.</p></div>
-          </div>
-          <div class="rule"></div><h2>Personal Reflections</h2>
-          <p>One thing I've realized is that I often focus more on the result than the process. I feel motivated when I'm interested in a task or can see a good outcome, but I sometimes settle for completing the requirements instead of exploring how much I can improve the work.</p>
-          <p>I've also learned that developing artistic skills takes patience. Coming from a STEM background, I was used to understanding some topics relatively quickly. Art has shown me that knowing what I want to create is different from having the skills to execute it. I'm learning to accept being a beginner and to treat practice as part of the process.</p>
-          <p>During group work, I found that I could contribute by researching and completing assigned tasks, but I sometimes hesitated to share ideas or take initiative. I want to become more confident in expressing my thoughts and more comfortable contributing even when I'm unsure.</p>
-          <div class="quote">I don't need to have everything figured out yet. I need to keep learning, practicing, and becoming more willing to try.</div>
-        </div>
+    <section class="jg-window" id="jg-screen-skills" data-screen="skills" aria-labelledby="jg-skills-title" hidden>
+      <div class="jg-window-top"><span>CHARACTER / IZUME1Y</span><button class="jg-close" type="button" data-open="home" aria-label="Close Skills"><span aria-hidden="true">×</span></button></div>
+      <header class="jg-heading"><h2 id="jg-skills-title">Skills</h2></header>
+      <div class="jg-columns">
+        <section class="jg-stat-column"><h3>Personal</h3>
+        </section>
+        <section class="jg-stat-column"><h3>Illustration</h3>
+        </section>
       </div>
+      <div class="jg-skill-inspect" aria-live="polite"><h3 id="jg-inspected-name">Artistic ability</h3><p id="jg-inspected-description">Develop my technique and turn ideas into finished work.</p></div>
+      <p class="jg-rating-note">Self-rated · a work in progress</p>
     </section>
-
-    <section class="panel" id="background" role="tabpanel" aria-labelledby="tab-background" hidden>
-      <div class="frame">
-        <div class="frame-head"><span>03 / Background file</span><span class="right">Education & experience</span></div>
-        <div class="content">
-          <div class="section-title"><h2>Background</h2><p>Education · experience</p></div>
-          <h3>Educational Background</h3>
-          <div class="timeline-item"><p class="eyebrow">Current</p><h3>CIIT College of Arts and Technology</h3><p>Bachelor of Multimedia Arts (BMMA)</p><p class="muted">Currently developing my foundation in multimedia arts while exploring creative interests and areas of specialization.</p></div>
-          <div class="timeline-item"><p class="eyebrow">Previous academic background</p><h3>Senior High School — STEM</h3><p class="muted">My STEM background gave me experience with analytical and structured learning. Moving into Multimedia Arts is allowing me to develop a different set of skills and become more comfortable with creative work.</p></div>
-          <div class="rule"></div><h2>Achievements & Projects</h2>
-          <p class="muted">Most of my experience so far comes from school, personal interests, and the tasks I've taken on. I don't have a long list of formal awards to show, so this section focuses on the kind of work and experience I'm building at the moment.</p>
-          <div class="grid2">
-            <div class="card"><h3>Projects</h3><p>I'm currently building my creative foundation through my Multimedia Arts studies. As I gain more experience, the work I choose to share here will reflect the skills and interests I'm developing.</p><span class="tag">Current focus</span></div>
-            <div class="card"><h3>Achievements & Recognition</h3><p>At this point, I'm more focused on learning and improving than collecting awards. I see the skills I develop, the work I complete, and the progress I make as important milestones too.</p><span class="tag">Personal milestones</span></div>
-          </div>
-        </div>
+    <section class="jg-window jg-about" id="jg-screen-about" data-screen="about" aria-labelledby="jg-about-title" hidden>
+      <div class="jg-window-top"><span>ABOUT / IZUME1Y</span><button class="jg-close" type="button" data-open="home" aria-label="Close About"><span aria-hidden="true">×</span></button></div>
+      <div class="jg-character">
+        <figure class="jg-avatar"><div class="jg-avatar-slot"><div class="jg-portrait-placeholder" role="img" aria-label="Portrait placeholder"><span>Portrait</span><small>To be added</small></div></div><figcaption>Izume1y</figcaption></figure>
+        <div class="jg-identity"><p class="jg-identity-label">THE ARTIST</p><h2 id="jg-about-title">Jaun Diezmo</h2><p class="jg-bio">I draw, explore ideas, and enjoy figuring out how things work.</p><dl class="jg-identity-facts"><div><dt>Focus</dt><dd>Illustration</dd></div><div><dt>Interests</dt><dd>Games & technology</dd></div></dl></div>
       </div>
+      <section class="jg-traits" aria-label="Character traits"><h3>Traits</h3><div class="jg-trait-slots"><button class="jg-trait" type="button" data-trait="curiosity" aria-pressed="true">Curiosity</button><button class="jg-trait" type="button" data-trait="humor" aria-pressed="false">Humor</button><button class="jg-trait" type="button" data-trait="adaptability" aria-pressed="false">Adaptability</button></div><p class="jg-trait-detail" aria-live="polite">I like finding out how things work.</p></section>
+      <section class="jg-direction"><h3>What I'm working toward</h3><p>Making work I'm proud of, and building a living from it.</p></section>
+      <details class="jg-background"><summary class="cursor-interaction">Background</summary><p>STEM → Multimedia Arts · CIIT College of Arts and Technology</p></details>
     </section>
-
-    <section class="panel" id="values" role="tabpanel" aria-labelledby="tab-values" hidden>
-      <div class="frame">
-        <div class="frame-head"><span>04 / Personal compass</span><span class="right">Life direction</span></div>
-        <div class="content">
-          <div class="section-title"><h2>Values & Direction</h2><p>Vision · mission · principles</p></div>
-          <h3>Life Vision</h3>
-          <p>To build a successful and fulfilling life through work that I genuinely enjoy and take pride in. I want to create things that reflect my interests and abilities while gaining the financial stability and independence to enjoy the life I build.</p>
-          <div class="rule"></div><h3>Life Mission</h3>
-          <p>To continuously develop my skills, explore my interests, and take opportunities that allow me to grow. I want to turn my ideas and abilities into meaningful work, remain open to learning, and work toward a future where I can support myself through something I'm proud to create.</p>
-          <div class="rule"></div><h2>Personal Values</h2>
-          <div class="grid2">
-            <div class="card"><h3>Independence</h3><p>I want to build a comfortable life through my own efforts and eventually be able to support myself and live independently.</p></div>
-            <div class="card"><h3>Self-Respect</h3><p>I want to become someone I can genuinely respect, someone who can stand up for themselves and make decisions without constantly seeking approval.</p></div>
-            <div class="card"><h3>Authenticity</h3><p>I value being able to express who I am instead of changing myself just to meet other people's expectations.</p></div>
-            <div class="card"><h3>Growth & Dependability</h3><p>I want to keep improving while becoming someone others can rely on to take responsibility and put genuine effort into their work.</p></div>
-          </div>
-          <div class="quote">For me, success isn't only about what I earn or achieve. It's also about having the freedom to live on my own terms and being proud of the person I've become.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="skills" role="tabpanel" aria-labelledby="tab-skills" hidden>
-      <div class="frame">
-        <div class="frame-head"><span>05 / Skill progression</span><span class="right">Development goals</span></div>
-        <div class="content">
-          <div class="section-title"><h2>Skill Tree</h2><p>Current development</p></div>
-          <p class="muted">A look at the skills and habits I'm currently developing. The progress bars represent my own estimate of where I stand and are meant to reflect my personal growth, not measured scores.</p>
-          <div class="skilltree">
-            <div class="skill"><h3>Artistic Ability</h3><p>Develop my technique and learn to turn ideas into finished work.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Building foundations</strong></div></div>
-            <div class="skill"><h3>Critical Thinking</h3><p>Look beyond the first answer, question assumptions, and make considered decisions.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Developing</strong></div></div>
-            <div class="skill"><h3>Discipline</h3><p>Build a steadier routine and follow through without relying only on deadlines.</p><div class="track"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Starting out</strong></div></div>
-            <div class="skill"><h3>Physical Strength</h3><p>Become stronger and make physical well-being a more consistent part of my routine.</p><div class="track"><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Starting out</strong></div></div>
-            <div class="skill"><h3>Taking Initiative</h3><p>Speak up more often, share ideas, and try things even when the outcome is uncertain.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Improving</strong></div></div>
-            <div class="skill"><h3>Self-Confidence</h3><p>Trust my judgment, accept being a beginner, and express myself more openly.</p><div class="track"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="skill-meta"><span>Current stage</span><strong>Developing</strong></div></div>
-          </div>
-          <div class="quote">No skill is fixed at its current level. This is where I stand today, and the next step is to keep putting in the work.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel" id="works" role="tabpanel" aria-labelledby="tab-works" hidden>
-      <div class="frame">
-        <div class="frame-head"><span>06 / Works archive</span><span class="right">No entries yet</span></div>
-        <div class="content">
-          <div class="works-box"><span>Works in progress</span></div>
-        </div>
-      </div>
+    <section class="jg-window jg-works" id="jg-screen-works" data-screen="works" aria-labelledby="jg-works-title" hidden>
+      <div class="jg-window-top"><span>WORKS ARCHIVE</span><button class="jg-close" type="button" data-open="home" aria-label="Close Works"><span aria-hidden="true">×</span></button></div>
+      <div class="jg-empty"><div class="jg-empty-frame"><h2 id="jg-works-title">Works in<br>progress.</h2></div></div>
     </section>
   </main>
-
-  <footer><span>Personal portfolio · Current file</span><span>End of record / 001</span></footer>
 </div>
+<noscript><p style="padding:24px;text-align:center;color:#f1e3bc;background:#141e1f">Please enable JavaScript to explore this portfolio.</p></noscript>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const tabs = [...document.querySelectorAll('.tab[data-tab]')];
-  const panels = [...document.querySelectorAll('.panel[role="tabpanel"]')];
-
-  function showTab(tab) {
-    const targetId = tab.dataset.tab;
-
-    tabs.forEach(button => {
-      const selected = button === tab;
-      button.setAttribute('aria-selected', selected ? 'true' : 'false');
-      button.tabIndex = selected ? 0 : -1;
-    });
-
-    panels.forEach(panel => {
-      const selected = panel.id === targetId;
-      panel.hidden = !selected;
-      panel.classList.toggle('active', selected);
-    });
-  }
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => showTab(tab));
-    tab.addEventListener('keydown', event => {
-      let nextIndex = index;
-      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
-      else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
-      else if (event.key === 'Home') nextIndex = 0;
-      else if (event.key === 'End') nextIndex = tabs.length - 1;
-      else return;
-
-      event.preventDefault();
-      showTab(tabs[nextIndex]);
-      tabs[nextIndex].focus();
-    });
-  });
-
-  const initialTab = tabs.find(tab => tab.getAttribute('aria-selected') === 'true') || tabs[0];
-  if (initialTab) showTab(initialTab);
-});
+(()=>{
+ const root=document.getElementById('jaun-title-screen');
+ const canvas=root.querySelector('canvas'), ctx=canvas.getContext('2d');
+ if(ctx){
+ const sky=ctx.createLinearGradient(0,0,0,270);sky.addColorStop(0,'#132436');sky.addColorStop(.46,'#657777');sky.addColorStop(.7,'#c19263');sky.addColorStop(1,'#233b36');ctx.fillStyle=sky;ctx.fillRect(0,0,384,270);
+ let seed=72;const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+ ctx.fillStyle='#d6d3aa';for(let i=0;i<42;i++){const x=Math.floor(rand()*384),y=Math.floor(rand()*85);ctx.globalAlpha=.25+rand()*.5;ctx.fillRect(x,y,1,1);}ctx.globalAlpha=1;
+ ctx.fillStyle='#d2b981';ctx.fillRect(289,43,16,16);ctx.fillRect(286,46,22,10);ctx.fillStyle='#a6aa8b';ctx.fillRect(286,50,10,3);
+ function ridge(base,amplitude,color,phase){ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,270);for(let x=0;x<=384;x+=4){const y=Math.floor((base+Math.sin(x*.027+phase)*amplitude+Math.sin(x*.067+phase)*amplitude*.35)/3)*3;ctx.lineTo(x,y);}ctx.lineTo(384,270);ctx.fill();}
+ ridge(132,23,'#4a6566',0);ridge(160,18,'#344f4b',2);ridge(201,11,'#263f37',1);
+ function pine(x,y,s,color){ctx.fillStyle='#23362d';ctx.fillRect(x-1*s,y,3*s,42*s);ctx.fillStyle=color;for(let i=0;i<5;i++){const w=(5+i*3)*s;ctx.fillRect(x-w/2,y+i*6*s,w,7*s);} }
+ for(let i=0;i<18;i++)pine(Math.floor(rand()*384),169+Math.floor(rand()*20),.7,'#2a443b');
+ pine(18,55,2.2,'#1e342e');pine(55,85,1.9,'#203c30');pine(351,63,2.3,'#1b332c');pine(383,89,2.6,'#1a302b');
+ ctx.fillStyle='#192d28';ctx.fillRect(0,236,384,34);for(let i=0;i<110;i++){ctx.fillStyle=i%3===0?'#40503b':'#293f30';ctx.fillRect(Math.floor(rand()*384/3)*3,232+Math.floor(rand()*35/3)*3,3+Math.floor(rand()*3)*3,3);}
+ ctx.fillStyle='#b68b4d';for(let i=0;i<8;i++){const x=i%2?322+rand()*28:35+rand()*30,y=150+rand()*70;ctx.fillRect(Math.floor(x),Math.floor(y),1,2);}
+ }
+ // Owner-editable ratings; changing these values updates the displayed bars.
+ const portfolioSkills={
+   personal:[
+     {name:'Critical thinking',rating:4,description:'Question assumptions and look beyond the first answer.'},
+     {name:'Discipline',rating:2,description:'Build a steadier routine without relying only on deadlines.'},
+     {name:'Physical Fitness',rating:2,description:'Make physical well-being a more consistent part of my routine.'},
+     {name:'Initiative',rating:3,description:'Share ideas and try things even when the outcome is uncertain.'},
+     {name:'Confidence',rating:3,description:'Trust my judgment and express myself more openly.'}
+   ],
+   illustration:[
+     {name:'Artistic ability',rating:3,description:'Develop my technique and turn ideas into finished work.'},
+     {name:'Linework',rating:3,description:'Practice focus: confident strokes and deliberate line weight.'},
+     {name:'Anatomy',rating:2,description:'Practice focus: gesture, proportion, and the human figure.'},
+     {name:'Color & lighting',rating:3,description:'Practice focus: color relationships, light, and shadow.'},
+     {name:'Composition',rating:3,description:'Practice focus: arranging shapes and guiding the eye.'}
+   ]
+ };
+ function makeSkill(skill){
+   const button=document.createElement('button');button.type='button';button.className='jg-skill-entry';button.setAttribute('aria-pressed',String(skill.name==='Artistic ability'));button.dataset.skill=skill.name;
+   const row=document.createElement('span');row.className='jg-stat-name';
+   const name=document.createElement('span');name.textContent=skill.name;
+   const value=document.createElement('span');value.textContent=skill.rating+' / 10';row.append(name,value);
+   const bar=document.createElement('span');bar.className='jg-segments';bar.setAttribute('aria-hidden','true');
+   for(let i=0;i<10;i++){const segment=document.createElement('i');segment.dataset.filled=String(i<skill.rating);bar.append(segment);}
+   button.append(row,bar);button.addEventListener('click',()=>{root.querySelectorAll('.jg-skill-entry').forEach(entry=>entry.setAttribute('aria-pressed',String(entry===button)));root.querySelector('#jg-inspected-name').textContent=skill.name;root.querySelector('#jg-inspected-description').textContent=skill.description;});return button;
+ }
+ const skillColumns=root.querySelectorAll('.jg-stat-column');
+ ['personal','illustration'].forEach((group,index)=>{const column=skillColumns[index];column.querySelectorAll('.jg-stat,.jg-unrated').forEach(item=>item.remove());portfolioSkills[group].forEach(skill=>column.append(makeSkill(skill)));});
+ const traitCopy={curiosity:'I like finding out how things work.',humor:'Humor helps me connect with people.',adaptability:'When something falls through, I try to adjust and move forward.'};
+ root.querySelectorAll('[data-trait]').forEach(button=>button.addEventListener('click',()=>{root.querySelectorAll('[data-trait]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));root.querySelector('.jg-trait-detail').textContent=traitCopy[button.dataset.trait];}));
+ let lastOpener=root.querySelector('.jg-menu button');
+ function openScreen(name){root.querySelectorAll('[data-screen]').forEach(screen=>screen.hidden=screen.dataset.screen!==name);root.querySelectorAll('.jg-menu [data-open]').forEach(button=>button.setAttribute('aria-expanded',String(button.dataset.open===name)));window.scrollTo(0,0);const next=name==='home'?lastOpener:root.querySelector('[data-screen="'+name+'"] button');if(next)next.focus({preventScroll:true});}
+ root.querySelectorAll('button[data-open]').forEach(button=>button.addEventListener('click',()=>{const name=button.dataset.open;if(name!=='home')lastOpener=button;openScreen(name);}));
+ root.querySelector('.jg-menu').addEventListener('keydown',event=>{if(!['ArrowUp','ArrowDown','Home','End'].includes(event.key))return;const buttons=[...root.querySelectorAll('.jg-menu button')];const current=buttons.indexOf(document.activeElement);let next=current;if(event.key==='ArrowDown')next=(current+1)%buttons.length;if(event.key==='ArrowUp')next=(current-1+buttons.length)%buttons.length;if(event.key==='Home')next=0;if(event.key==='End')next=buttons.length-1;event.preventDefault();buttons[next].focus();});
+ root.addEventListener('keydown',event=>{if(event.key==='Escape')openScreen('home');});
+})();
 </script>
 </body>
 </html>
