@@ -113,7 +113,7 @@ button.jg-skill-entry[aria-pressed=true]{background:#41659c60;color:#ffe49a}
       <div class="jg-window-top"><span>About</span><button class="jg-close" type="button" data-open="home" aria-label="Close About"><span aria-hidden="true">×</span></button></div>
       <div class="jg-character">
         <img class="jg-profile" src="./profile.png" alt="Portrait of Jaun Diezmo" width="112" height="112" onerror="this.hidden=true">
-        <div class="jg-identity"><h2 id="jg-about-title">Jaun Diezmo</h2><p class="jg-bio">I'm Jaun, the illustrator behind Izume1y. I like drawing, photography, and playing Games like Osu and Terraria :3.</p></div>
+        <div class="jg-identity"><h2 id="jg-about-title">Jaun Diezmo</h2><p class="jg-bio">I'm Jaun, the illustrator behind Izume1y. I like drawing, photography, and playing Terraria and Minecraft.</p></div>
       </div>
       <section class="jg-traits" aria-label="Character traits"><h3>Traits</h3><div class="jg-trait-slots"><button class="jg-trait" type="button" data-trait="curiosity" aria-pressed="true">Curiosity</button><button class="jg-trait" type="button" data-trait="humor" aria-pressed="false">Humor</button><button class="jg-trait" type="button" data-trait="adaptability" aria-pressed="false">Adaptability</button></div><p class="jg-trait-detail" aria-live="polite">I like finding out how things work.</p></section>
       <details class="jg-background"><summary class="cursor-interaction">Background</summary><p>STEM → Multimedia Arts · CIIT College of Arts and Technology</p></details>
@@ -213,7 +213,6 @@ button.jg-skill-entry[aria-pressed=true]{background:#41659c60;color:#ffe49a}
  const world=root.querySelector('.jg-world');
  const image=world.querySelector('img');
  let visible=true,ready=false,frame=0,clock=0,last=0;
- label();
  const canvas=document.createElement('canvas');canvas.width=1324;canvas.height=699;
  canvas.setAttribute('aria-hidden','true');
  const ctx=canvas.getContext('2d');
